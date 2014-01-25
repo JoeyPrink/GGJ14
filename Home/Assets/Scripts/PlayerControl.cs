@@ -105,13 +105,17 @@ public class PlayerControl : MonoBehaviour
 						lineRenderer.SetPosition (0, transform.position);
 						lineRenderer.SetPosition (1, new Vector2 (transform.position.x, transform.position.y) + lookDirection * 100);
 		
-						RaycastHit2D[] hit = Physics2D.RaycastAll (transform.position, lookDirection, Mathf.Infinity);
+						RaycastHit2D[] hit = Physics2D.RaycastAll (transform.position, lookDirection, 100, 1 << LayerMask.NameToLayer("Player"));
+			print (hit.Length);
 						if (hit.Length > 1) {
 								if (hit [1].collider != null) {
-										if (hit [1].collider.gameObject != null && hit [1].collider.gameObject.rigidbody2D != null) {
+										if (hit [1].collider.gameObject != null 
+					    					&& hit [1].collider.gameObject != this
+					    					&& hit [1].collider.gameObject.rigidbody2D != null
+					                        && hit [1].collider.gameObject.tag == "Player") {
 												Vector2 pos = new Vector2 (transform.position.x, transform.position.y);
 												float squaredDistance = (hit [1].point - pos).sqrMagnitude; 
-												hit [1].collider.gameObject.rigidbody2D.AddForce (lookDirection * (1000 / squaredDistance));
+												hit [1].collider.gameObject.rigidbody2D.AddForce (lookDirection * (100 - squaredDistance));
 										}
 								}
 						}
@@ -132,3 +136,4 @@ public class PlayerControl : MonoBehaviour
 				lookDirection.x = -lookDirection.x;
 		}
 }
+
