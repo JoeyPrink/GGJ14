@@ -48,6 +48,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\EnemyBehaviour.cs" />
      <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
+     <Compile Include="Assets\Scripts\Player1Behaviour.cs" />
+     <Compile Include="Assets\Scripts\Player2Behaviour.cs" />
      <Compile Include="Assets\Scripts\PlayerBehaviour.cs" />
      <Compile Include="Assets\Scripts\RendererExtensions.cs" />
   </ItemGroup>
