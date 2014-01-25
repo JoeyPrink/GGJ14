@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ec8e34c97ef2ee34395623fb7e4b0054
+guid: 15dda989a64d00a48a224fa420600fbf
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -23,7 +23,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 1024
   textureSettings:
-    filterMode: 0
+    filterMode: -1
     aniso: 1
     mipBias: -1
     wrapMode: 1
@@ -35,47 +35,60 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
-  spritePixelsToUnits: 160
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings: []
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -2
+    compressionQuality: 50
   spriteSheet:
     sprites:
-    - name: part_explosion_0
+    - name: disappear_0
       rect:
         serializedVersion: 2
-        x: 158
-        y: 1160
-        width: 734
-        height: 718
+        x: 26
+        y: 291
+        width: 253
+        height: 188
       alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: part_explosion_1
+      pivot: {x: .5, y: .5}
+    - name: disappear_1
       rect:
         serializedVersion: 2
-        x: 1080
-        y: 1062
-        width: 904
-        height: 933
+        x: 369
+        y: 286
+        width: 288
+        height: 223
       alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: part_explosion_2
+      pivot: {x: .5, y: .5}
+    - name: disappear_2
       rect:
         serializedVersion: 2
-        x: 119
-        y: 112
-        width: 801
-        height: 803
+        x: 677
+        y: 282
+        width: 334
+        height: 230
       alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: part_explosion_3
+      pivot: {x: .5, y: .5}
+    - name: disappear_3
       rect:
         serializedVersion: 2
-        x: 1314
-        y: 245
-        width: 510
-        height: 499
+        x: 13
+        y: 32
+        width: 315
+        height: 253
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
+    - name: disappear_4
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 16
+        width: 337
+        height: 227
+      alignment: 0
+      pivot: {x: .5, y: .5}
   spritePackingTag: 
   userData: 
