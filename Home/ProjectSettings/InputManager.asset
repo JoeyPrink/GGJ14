@@ -28,9 +28,9 @@ InputManager:
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 3
+    gravity: 2
     dead: .00100000005
-    sensitivity: 3
+    sensitivity: 2
     snap: 1
     invert: 0
     type: 2
@@ -60,9 +60,9 @@ InputManager:
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 3
+    gravity: 2
     dead: .00100000005
-    sensitivity: 3
+    sensitivity: 2
     snap: 1
     invert: 0
     type: 2
@@ -89,7 +89,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 3
+    positiveButton: joystick 1 button 3
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -120,7 +120,7 @@ InputManager:
     m_Name: Jump2
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: joystick button 3
+    negativeButton: joystick 2 button 3
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
@@ -160,7 +160,7 @@ InputManager:
     dead: .00100000005
     sensitivity: 1000
     snap: 0
-    invert: 0
+    invert: 1
     type: 2
     axis: 4
     joyNum: 1
@@ -192,7 +192,7 @@ InputManager:
     dead: .00100000005
     sensitivity: 1000
     snap: 0
-    invert: 0
+    invert: 1
     type: 2
     axis: 4
     joyNum: 2
