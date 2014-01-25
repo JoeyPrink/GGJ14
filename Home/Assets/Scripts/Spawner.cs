@@ -4,18 +4,17 @@ using System.Collections;
 public class Spawner : MonoBehaviour
 {
 
-	GameObject go = (GameObject)Instantiate(Resources.Load("Stein"));
+	Object go;
 
 	void Start ()
 	{
-		InvokeRepeating("Spawn", 16f, 6f);
+		go = Resources.Load("Stein");
+		InvokeRepeating("Spawn", 10f, 6f);
 	}
 
 
 	void Spawn ()
 	{
-		go = (GameObject)Instantiate(Resources.Load("Stein"));
-		Instantiate(go, transform.position, transform.rotation);
-
+		Instantiate((GameObject)go, transform.position, transform.rotation);
 	}
 }
