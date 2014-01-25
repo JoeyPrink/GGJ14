@@ -18,6 +18,7 @@ public class PlayerControl : MonoBehaviour
 	private Animator anim;			        // Reference to the player's animator component.
 
 	public Vector2 lookDirection;
+	public long lastLookUpdate;
 	private LineRenderer lineRenderer;
 
 	// The index of the player for this controller (1 based)
@@ -99,11 +100,10 @@ public class PlayerControl : MonoBehaviour
 			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
 			jump = false;
 		}
-
-		float lookChange = Input.GetAxis("LookDirection" + playerNumber);
-		float angle = Mathf.Asin (lookDirection.y);
-		angle += lookChange * Mathf.Deg2Rad;
-		lookDirection.y = Mathf.Sin(angle);
+		float inputAngle = Mathf.Atan2(Input.GetAxis("LookVertical" + playerNumber), 
+		                               Input.GetAxis("LookHorizontal" + playerNumber)) + Mathf.PI/2;
+		lookDirection.y = Mathf.Sin(inputAngle);
+		lookDirection.x = Mathf.Cos(inputAngle);
 	}
 	
 	

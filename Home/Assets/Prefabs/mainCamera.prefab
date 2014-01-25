@@ -89,8 +89,8 @@ MonoBehaviour:
   yMargin: 2
   xSmooth: 2
   ySmooth: 2
-  maxXAndY: {x: 5, y: 5}
-  minXAndY: {x: -5, y: -5}
+  maxXAndY: {x: 50, y: 50}
+  minXAndY: {x: -50, y: -50}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
