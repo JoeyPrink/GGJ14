@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Gun.cs">
+    <Files>
+      <File FileName="Assets\Scripts\PlayerControl.cs" Line="128" Column="3" />
+      <File FileName="Assets\Scripts\Player1Control.cs" Line="53" Column="3" />
+      <File FileName="Assets\Scripts\PlayerHealth.cs" Line="80" Column="1" />
+      <File FileName="Assets\Scripts\PickupSpawner.cs" Line="43" Column="19" />
+      <File FileName="Assets\Scripts\Gun.cs" Line="20" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

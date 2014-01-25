@@ -78,8 +78,9 @@ public class PlayerControl : MonoBehaviour
 
 			// Play a random jump audio clip.
 			int i = Random.Range(0, jumpClips.Length);
+			if(i > 0) {
 			AudioSource.PlayClipAtPoint(jumpClips[i], transform.position);
-
+			}
 			// Add a vertical force to the player.
 			rigidbody2D.AddForce(new Vector2(0f, jumpForce));
 
