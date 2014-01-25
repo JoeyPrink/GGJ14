@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fb32ede6a3015fe4eb0e19d81e5e0f00
+guid: 5f9bd4dc70d0a3c4693530c95817f994
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -21,34 +21,29 @@ TextureImporter:
   generateCubemap: 0
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 2048
+  maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
-  spritePixelsToUnits: 40
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings: []
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -2
+    compressionQuality: 50
   spriteSheet:
-    sprites:
-    - name: env_TowerFull
-      rect:
-        serializedVersion: 2
-        x: 648
-        y: 0
-        width: 672
-        height: 1080
-      alignment: 0
-      pivot: {x: .5, y: .5}
+    sprites: []
   spritePackingTag: 
   userData: 

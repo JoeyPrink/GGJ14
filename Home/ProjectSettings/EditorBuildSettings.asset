@@ -5,7 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+<<<<<<< HEAD
   - enabled: 0
     path: Assets/Scenes/Level.unity
+=======
+  - enabled: 1
+    path: Assets/Scenes/Level (2).unity
+>>>>>>> f732a16f0c74d0f053c6859038ccd87c9fd25d0a
   - enabled: 1
     path: Assets/Scenes/ScenePartLevel2.unity
