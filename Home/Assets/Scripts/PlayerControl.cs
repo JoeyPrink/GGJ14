@@ -9,11 +9,12 @@ public class PlayerControl : MonoBehaviour
 		[HideInInspector]
 		public bool
 				jump = false;				// Condition for whether the player should jump.
-
+		public bool pull = false;
 		public float moveForce = 365f;			// Amount of force added to move the player left and right.
 		public float maxSpeed = 5f;				// The fastest the player can travel in the x axis.
 		public AudioClip[] jumpClips;			// Array of clips for when the player jumps.
 		public float jumpForce = 1000f;			// Amount of force added when the player jumps.
+		public float pullpushForce = 10f;
 
 		private Transform groundCheck;			// A position marking where to check if the player is grounded.
 		private bool grounded = false;			// Whether or not the player is grounded.
@@ -25,6 +26,10 @@ public class PlayerControl : MonoBehaviour
 
 		// The index of the player for this controller (1 based)
 		public int playerNumber;
+		private string otherPlayer;
+
+		public int pullResetTime;
+		public bool pulling = false;
 	
 		void Awake ()
 		{
@@ -37,17 +42,37 @@ public class PlayerControl : MonoBehaviour
 		void Start ()
 		{
 				lookDirection = new Vector2 (1, 0);
+				
+			if (playerNumber == 1) {
+				otherPlayer = "Player 2";
+			} else {
+				otherPlayer = "Player 1";
+			}
 		}
 	
 		void Update ()
 		{
+
 				// The player is grounded if a linecast to the groundcheck position hits anything on the ground layer.
 				grounded = Physics2D.Linecast (transform.position, groundCheck.position, 
 		                         1 << LayerMask.NameToLayer ("Ground"));  
 
 				// If the jump button is pressed and the player is grounded then the player should jump.
-				if (Input.GetButtonDown ("Jump" + playerNumber) && grounded)
+				if (Input.GetButtonDown ("Jump" + playerNumber) && grounded) {
 						jump = true;
+				}
+
+
+
+
+				/*if (pulling) {
+					pullResetTime = pullResetTime - 1;
+					if(pullResetTime==0) {
+						finishPulling();
+					}
+					Debug.Log(pullResetTime);
+				}*/
+
 		}
 
 		void FixedUpdate ()
@@ -69,16 +94,18 @@ public class PlayerControl : MonoBehaviour
 						rigidbody2D.velocity = new Vector2 (Mathf.Sign (rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
 		
 				// If the input is moving the player right and the player is facing left...
-				if (h > 0 && !facingRight)
-			// ... flip the player.
+				if (h > 0 && !facingRight) {
+						// ... flip the player.
 						Flip ();
-		// Otherwise if the input is moving the player left and the player is facing right...
-		else if (h < 0 && facingRight)
-			// ... flip the player.
+				}
+			// Otherwise if the input is moving the player left and the player is facing right...
+				else if (h < 0 && facingRight) {
+						// ... flip the player.
 						Flip ();
-		
+				}
 				// If the player should jump...
 				if (jump) {
+						GameObject.Find ("Player "+playerNumber).rigidbody2D.gravityScale = 1;
 						// Set the Jump animator trigger parameter.
 						anim.SetTrigger ("Jump");
 			
@@ -95,7 +122,7 @@ public class PlayerControl : MonoBehaviour
 				}
 				float inputLookY = Input.GetAxis ("LookVertical" + playerNumber);
 				float inputLookX = Input.GetAxis ("LookHorizontal" + playerNumber);
-
+		        
 				float inputAngle = Mathf.Atan2 (inputLookY, inputLookX) + Mathf.PI / 2;
 				lookDirection.y = Mathf.Sin (inputAngle);
 				lookDirection.x = Mathf.Cos (inputAngle);
@@ -104,21 +131,31 @@ public class PlayerControl : MonoBehaviour
 				if (lineRenderer.enabled) {
 						lineRenderer.SetPosition (0, transform.position);
 						lineRenderer.SetPosition (1, new Vector2 (transform.position.x, transform.position.y) + lookDirection * 100);
-		
-						RaycastHit2D[] hit = Physics2D.RaycastAll (transform.position, lookDirection, 100, 1 << LayerMask.NameToLayer("Player"));
-			print (hit.Length);
+						RaycastHit2D[] hit = Physics2D.RaycastAll (transform.position, lookDirection, 100, 1 << LayerMask.NameToLayer ("Player"));
 						if (hit.Length > 1) {
 								if (hit [1].collider != null) {
-										if (hit [1].collider.gameObject != null 
-					    					&& hit [1].collider.gameObject != this
-					    					&& hit [1].collider.gameObject.rigidbody2D != null
-					                        && hit [1].collider.gameObject.tag == "Player") {
-												Vector2 pos = new Vector2 (transform.position.x, transform.position.y);
-												float squaredDistance = (hit [1].point - pos).sqrMagnitude; 
-												hit [1].collider.gameObject.rigidbody2D.AddForce (lookDirection * (100 - squaredDistance));
-										}
+										if (hit [1].collider.gameObject.name == otherPlayer) {
+												pulling = true;
+												GameObject.Find (otherPlayer).rigidbody2D.gravityScale = 0.0f;
+												// push pull here 
+												if (!(Input.GetAxisRaw ("Pull" + playerNumber) > 0.5)) {
+														Vector2 pos = new Vector2 (transform.position.x, transform.position.y);
+														float squaredDistance = (hit [1].point - pos).sqrMagnitude;
+														GameObject.Find (otherPlayer).rigidbody2D.AddForce (lookDirection * (100 - squaredDistance) * pullpushForce);
+														//hit [1].collider.gameObject.rigidbody2D.AddForce (lookDirection * (100 - squaredDistance));
+												} else {
+														Vector2 pos = new Vector2 (transform.position.x, transform.position.y);
+														float squaredDistance = (hit [1].point - pos).sqrMagnitude; 
+														GameObject.Find (otherPlayer).rigidbody2D.AddForce (-1 * lookDirection * (100 - squaredDistance) * pullpushForce);
+												}
+
+										} 
 								}
+						
+							
 						}
+				} else {
+					finishPulling ();
 				}
 		}
 	
@@ -126,7 +163,6 @@ public class PlayerControl : MonoBehaviour
 		{
 				// Switch the way the player is labelled as facing.
 				facingRight = !facingRight;
-		
 				// Multiply the player's x local scale by -1.
 				Vector3 theScale = transform.localScale;
 				theScale.x *= -1;
@@ -135,5 +171,13 @@ public class PlayerControl : MonoBehaviour
 				// Transform the look direction
 				lookDirection.x = -lookDirection.x;
 		}
+
+	void finishPulling() {
+		pulling = false;
+		pullResetTime = 3;
+		if(GameObject.Find (otherPlayer) != null)
+			GameObject.Find (otherPlayer).rigidbody2D.gravityScale = 1;
+	
+	}
 }
 
