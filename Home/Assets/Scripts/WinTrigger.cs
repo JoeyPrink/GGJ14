@@ -20,7 +20,7 @@ public class WinTrigger : MonoBehaviour
 			// ... instantiate the splash where the player falls in.
 			Instantiate(splash, col.transform.position, transform.rotation);
 			// ... destroy the player.
-			Destroy (col.gameObject);
+			//Destroy (col.gameObject);
 			
 			
 			if (firstIsLanded == false) {
@@ -33,6 +33,7 @@ public class WinTrigger : MonoBehaviour
 				
 				// ... reload the level.
 				Application.LoadLevel(nextLevelName);
+			//	Destroy (col.gameObject);
 				
 			}}
 		else
