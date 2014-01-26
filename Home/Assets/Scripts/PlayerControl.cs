@@ -14,7 +14,7 @@ public class PlayerControl : MonoBehaviour
 		public float maxSpeed = 5f;				// The fastest the player can travel in the x axis.
 		public AudioClip[] jumpClips;			// Array of clips for when the player jumps.
 		public float jumpForce = 1000f;			// Amount of force added when the player jumps.
-		public float pullpushForce = 10f;
+		public float pullpushForce = 2f;
 
 		private Transform groundCheck;			// A position marking where to check if the player is grounded.
 		private bool grounded = false;			// Whether or not the player is grounded.
@@ -61,9 +61,6 @@ public class PlayerControl : MonoBehaviour
 				if (Input.GetButtonDown ("Jump" + playerNumber) && grounded) {
 						jump = true;
 				}
-
-
-
 
 				/*if (pulling) {
 					pullResetTime = pullResetTime - 1;
@@ -138,7 +135,7 @@ public class PlayerControl : MonoBehaviour
 												pulling = true;
 												GameObject.Find (otherPlayer).rigidbody2D.gravityScale = 0.0f;
 												// push pull here 
-												if (!(Input.GetAxisRaw ("Pull" + playerNumber) > 0.5)) {
+												if (!(Input.GetAxisRaw ("Pull" + playerNumber) > 0)) {
 														Vector2 pos = new Vector2 (transform.position.x, transform.position.y);
 														float squaredDistance = (hit [1].point - pos).sqrMagnitude;
 														GameObject.Find (otherPlayer).rigidbody2D.AddForce (lookDirection * (100 - squaredDistance) * pullpushForce);
